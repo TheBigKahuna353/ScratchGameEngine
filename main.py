@@ -44,6 +44,7 @@ class Engine:
         self.hold = False
         self.mouse_focus = 'window'
         self.sprites = []
+        self.sprite_names = []
         self.editor = Editor(self)
         self.clock = pygame.time.Clock()
     
@@ -52,6 +53,7 @@ class Engine:
             surf = pygame.Surface((50, 50))
             spr = Sprite(self, 'square', [x//2 for x in self.world.size], surf)
             self.sprites.append(spr)
+            self.sprite_names.append(type_)
 
     def loop(self):
         while self.running:
@@ -86,7 +88,6 @@ class Engine:
                 self.screen = pygame.display.set_mode(e.size, pygame.RESIZABLE)
                 self.editor.resize(e.w)
 
-
-e = Engine()
-
-e.loop()
+if __name__ == "__main__":    
+    e = Engine()
+    e.loop()

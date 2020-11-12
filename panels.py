@@ -157,9 +157,13 @@ class Hierarchy(Panel):
         super().__init__(editor, self.name, size, pos, col)
         self.R_click_names = ['add object', 'add new window']
         self.add_obj_names = ['square']
+        self.font = pygame.font.Font(pygame.font.match_font('Calibri'), 14)
     
     def draw(self):
         super().draw()
+        for i, name in enumerate(self.editor.engine.sprite_names):
+            obj = self.font.render(name, True, self.editor.ui_color['text'])
+            self.editor.engine.screen.blit(obj, (self.pos[0] + 10, self.pos[1] + 30 + i*15))
 
         if self.right_click_menu is not None:
             clicked_on = self.right_click_menu.draw()
